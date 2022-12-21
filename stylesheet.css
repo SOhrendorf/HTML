@@ -1,0 +1,17 @@
+body {
+    background-image:url("bILDER_SRC/julius.png");
+    text-align: center;
+}
+
+table,th,tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 40px;
+
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#t1{
+    font-size: 18px;
+}
