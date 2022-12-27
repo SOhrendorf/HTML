@@ -7,7 +7,7 @@
         </title>
     </head>
 
-    <body>
+    <body onload="startfunction()">
         <table>
             <tr>
                 <th>
@@ -21,5 +21,38 @@
         <p id="t1">
             Herzlich willkommen bei unserem Tarotkartenshop <br>
         </p>
+        
+        <div id="light" class="white_content"> <!--Abfragekasten mit zwei Buttons beim laden der Seite-->
+            Glauben sie an die Macht der Tarotkarten? <br>
+            <button class="btn1">Nein</button>
+            <script>
+                var btn1 = document.querySelector(".btn1");
+                var position=0; 
+                btn1.addEventListener("mouseover", function(){
+                    position===0 ? (position = 250) : (position = 0);
+                    btn1.style.transform = `translate(0px,${position}px)`;
+                    btn1.style.transition = "all 0.3s ease";
+                });
+            </script>
+
+            <button class="btn2">Ja</button>
+            <script>
+                var btn2 = document.querySelector(".btn2")
+                btn2.addEventListener("click", function(){
+                    document.getElementById('light').style.display='none';
+                    document.getElementById('fade').style.display='none';
+                })
+            </script>
+            <p><img src="bILDER_SRC/blackman.png" height= "65%"></p>
+            
+        </div>
+        <div id="fade" class="black_overlay"></div>
     </body>
+
+    <script>
+        function startfunction(){ //Funktion zum laden der Abfrage beim laden der Website
+            document.getElementById('light').style.display='block';
+            document.getElementById('fade').style.display='block';
+        }
+    </script>
 </html>
