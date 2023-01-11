@@ -10,12 +10,6 @@
     <body>
         zurück zur: 
         <a href="../index.php">Startseite</a>
-        <form method="post" action="anmelden.php">
-            <input type="text" size="20" name="user"/>
-            <input type="password" size="20" name="pass"/>
-            <input type="submit" value="Anmelden" name="okbutton"/>
-        </form> 
-        
         
         <form method="post"> <!--Eingabefelder -->
             <label>Vorname</label>
@@ -50,10 +44,17 @@
                     <button type ='button' data-bs-dismiss='alert' aria-label='Close'></button>
                  ";
                 }
+
+                if(!empty($errorMessage)){ //fehlermeldung wenn es schiefgeht
+                     echo"
+                    <strong> $errorMessage </strong>
+                     <button type ='button' data-bs-dismiss='alert' aria-label='Close'></button>
+                    ";
+                }
             ?>
+            
 
             <button type="submit">Abschicken</button>
-            <a href="../index.php" role="button">Abbrechen</a>
         </form>
     </body>
     <p>
