@@ -82,7 +82,7 @@
         $connection = new mysqli($servername, $username, $password, $db);
 
 
-        $vorname = "";
+    $vorname = "";
     $nachname = "";
     $email = "";
     $passwort = "";
