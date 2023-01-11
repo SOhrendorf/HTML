@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <img src="img/walkurelogo.png" alt="logo">
+        <img src="bILDER_SRC/walkurelogo.png" alt="logo">
         <table>
             <tr>
                 <th>

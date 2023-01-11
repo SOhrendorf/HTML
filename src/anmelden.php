@@ -4,7 +4,7 @@
     </title>
     <body>
         zurück zur: 
-        <a href="../index.html">Startseite</a>
+        <a href="../index.php">Startseite</a>
         <form method="post" action="anmelden.php">
             <input type="text" size="20" name="user"/>
             <input type="password" size="20" name="pass"/>
