@@ -13,7 +13,7 @@
        <tr id="tb1">
           <th id="tb1"><a href="../index.php">Homepage</a></th>
           <th id="tb1"><a href="impressum.html">Impressum</a></th>
-          <th id="tb1"><a href="create_madebycarlo.php">Benutzer Registrieren</a></th>
+          <th id="tb1"><a href="anmelden.php">Benutzer Registrieren</a></th>
         </tr>
     </table>
     </h2>

@@ -13,16 +13,6 @@
             die("Connection failed: " . $conn->connect_error);     
         }
 
-
-    $vorname = "";
-    $name = "";
-    $email = "";
-    $passwort = "";
-    $ort = "";
-    $plz = "";
-    $strasse = "";
-    $hausnummer = "";
-
     $errorMessage = "";
     $succesMessage = "";
 
@@ -53,18 +43,9 @@
                 break;
             }
 
-            $vorname = "";
-            $name = "";
-            $email = "";
-            $passwort = "";
-            $ort = "";
-            $plz = "";
-            $strasse = "";
-            $hausnummer = "";
-
             $succesMessage = "Kunde wurde hinzugefügt";
 
-            header("location: /tools/admin.php"); //wenn es funktioniert hat den user zur seite zurückschicken
+            header("location: /info/src/anmelden.php"); //wenn es funktioniert hat den user zur seite zurückschicken
             exit;
 
         } while (false);
@@ -99,28 +80,28 @@
         
         <form method="post"> <!--Eingabefelder -->
             <label>Vorname</label>
-            <input type="text" name="vorname" value="<?php echo $vorname; ?>">
+            <input type="text" name="vorname">
             <br>
             <label>Nachname</label>
-            <input type="text" name="name" value="<?php echo $name; ?>">
+            <input type="text" name="name">
             <br>
             <label>E-Mail</label>
-            <input type="text" name="email" value="<?php echo $email; ?>">
+            <input type="text" name="email">
             <br>
             <label>Passwort</label>
-            <input type="text" name="passwort" value="<?php echo $passwort; ?>">
+            <input type="text" name="passwort">
             <br>
             <label>Ort</label>
-            <input type="text" name="ort" value="<?php echo $ort; ?>">
+            <input type="text" name="ort">
             <br>
             <label>PLZ</label>
-            <input type="text" name="plz" value="<?php echo $plz; ?>">
+            <input type="text" name="plz">
             <br>
             <label>Straße</label>
-            <input type="text" name="strasse" value="<?php echo $strasse; ?>">
+            <input type="text" name="strasse">
             <br>
             <label>Straßennummer</label>
-            <input type="text" name="hausnummer" value="<?php echo $hausnummer; ?>">
+            <input type="text" name="hausnummer">
             <br>
 
             <?php
@@ -137,7 +118,7 @@
         </form>
     </body>
     <p>
-    <!---<img src="../bILDER_SRC/bepett.png" width ="30%" height="30%"> <br>--->
+    <img src="../bILDER_SRC/bepett.png" width ="30%" height="30%"> <br>
     
     <h1>Bei uns sind sie sicher</h1>
 </html>
