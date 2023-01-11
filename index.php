@@ -12,13 +12,13 @@
         <img src="bILDER_SRC/walkurelogo.png" alt="logo">
         <table>
             <tr>
-                <th>
+                <th id="tb1">
                         <a href="index.php">Startseite</a>
                 </th>
-                <th>
+                <th id="tb1">
                         <a href="src/impressum.html">Impressum</a>
                 </th>
-                <th>
+                <th id="tb1">
                     <a href="src/anmelden.php">Anmelden</a>
                 </th>    
             </tr>
