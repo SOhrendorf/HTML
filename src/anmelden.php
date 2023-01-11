@@ -1,3 +1,77 @@
+<?php
+        //Stammvariabeln für DB
+        $servername = "127.0.0.1";
+        $username = "simon";
+        $password = "himbeerkuchen";
+        $db = "q2_shop";
+
+        //Verbindung aufbauen
+        $connection = new mysqli($servername, $username, $password, $db);
+
+         // Check connection
+         if ($connection->connect_error){
+            die("Connection failed: " . $conn->connect_error);     
+        }
+
+
+    $vorname = "";
+    $name = "";
+    $email = "";
+    $passwort = "";
+    $ort = "";
+    $plz = "";
+    $strasse = "";
+    $hausnummer = "";
+
+    $errorMessage = "";
+    $succesMessage = "";
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){ //checken ob daten übertragen wurden
+        $vorname = $_POST["vorname"]; //wenn es klappt daten übertragen 
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        $passwort = $_POST["passwort"];
+        $ort = $_POST["ort"];
+        $plz = $_POST["plz"];
+        $strasse = $_POST["strasse"];
+        $hausnummer = $_POST["hausnummer"];
+
+        do{ 
+            if (empty($vorname) || empty($name) || empty($email) || empty($passwort) || empty($ort) || empty($plz) || empty($strasse) || empty($hausnummer)){
+                $errorMessage = "Alle Felde müssen ausgefüllt sein";
+                break;
+            } //wenn ein feld leer ist error message
+
+            //einen kunden in die datenbank eintragen
+            $sql = "INSERT INTO benutzer (vorname, name, email, passwort, ort, plz, strasse, hausnummer) " .
+                    "VALUES ('$vorname', '$name', '$email', '$passwort', '$ort', '$plz', '$strasse', '$hausnummer')";
+
+            $result = $connection->query($sql); //query ausführen
+            
+            if(!$result){ //ggf. fehler anzeigen
+                $errorMessage = "Invalid query: " . $connection->error;
+                break;
+            }
+
+            $vorname = "";
+            $name = "";
+            $email = "";
+            $passwort = "";
+            $ort = "";
+            $plz = "";
+            $strasse = "";
+            $hausnummer = "";
+
+            $succesMessage = "Kunde wurde hinzugefügt";
+
+            header("location: /tools/admin.php"); //wenn es funktioniert hat den user zur seite zurückschicken
+            exit;
+
+        } while (false);
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -8,15 +82,27 @@
     </head>
     
     <body>
-        zurück zur: 
+        </P>
+        zurück zur:
         <a href="../index.php">Startseite</a>
+
+        <h1>Kunden Anlegen</h1>
+
+        <?php
+            if(!empty($errorMessage)){ //fehlermeldung wenn es schiefgeht
+                echo"
+                    <strong> $errorMessage </strong>
+                    <button type ='button' data-bs-dismiss='alert' aria-label='Close'></button>
+                ";
+            }
+        ?> 
         
         <form method="post"> <!--Eingabefelder -->
             <label>Vorname</label>
             <input type="text" name="vorname" value="<?php echo $vorname; ?>">
             <br>
             <label>Nachname</label>
-            <input type="text" name="nachname" value="<?php echo $nachname; ?>">
+            <input type="text" name="name" value="<?php echo $name; ?>">
             <br>
             <label>E-Mail</label>
             <input type="text" name="email" value="<?php echo $email; ?>">
@@ -44,13 +130,6 @@
                     <button type ='button' data-bs-dismiss='alert' aria-label='Close'></button>
                  ";
                 }
-
-                if(!empty($errorMessage)){ //fehlermeldung wenn es schiefgeht
-                     echo"
-                    <strong> $errorMessage </strong>
-                     <button type ='button' data-bs-dismiss='alert' aria-label='Close'></button>
-                    ";
-                }
             ?>
             
 
@@ -58,84 +137,7 @@
         </form>
     </body>
     <p>
-    <img src="../bILDER_SRC/bepett.png" width ="30%" height="30%"> <br>
+    <!---<img src="../bILDER_SRC/bepett.png" width ="30%" height="30%"> <br>--->
     
     <h1>Bei uns sind sie sicher</h1>
 </html>
-
-<?php
-        if (isset($_POST['okbutton'])) {
-            echo "<h3>";
-            echo $_POST['user'];
-            echo "</h3>";
-            echo "<h3>Wir freuen uns, Dich zu sehen!</h3>";
-            echo "Dein sehr sicheres Passwort ist: ".$_POST['pass'];
-        }
-
-        //Stammvariabeln für DB
-        $servername = "127.0.0.1";
-        $username = "simon";
-        $password = "himbeerkuchen";
-        $db = "q2_shop";
-
-        //Verbindung aufbauen
-        $connection = new mysqli($servername, $username, $password, $db);
-
-
-    $vorname = "";
-    $nachname = "";
-    $email = "";
-    $passwort = "";
-    $ort = "";
-    $plz = "";
-    $strasse = "";
-    $hausnummer = "";
-
-    $errorMessage = "";
-    $succesMessage = "";
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){ //checken ob daten übertragen wurden
-        $vorname = $_POST["vorname"]; //wenn es klappt daten übertragen 
-        $nachname = $_POST["nachname"];
-        $email = $_POST["email"];
-        $passwort = $_POST["passwort"];
-        $ort = $_POST["ort"];
-        $plz = $_POST["plz"];
-        $strasse = $_POST["strasse"];
-        $hausnummer = $_POST["hausnummer"];
-
-        do{ 
-            if (empty($vorname) || empty($nachname) || empty($email) || empty($passwort) || empty($ort) || empty($plz) || empty($strasse) || empty($hausnummer)){
-                $errorMessage = "Alle Felde müssen ausgefüllt sein";
-                break;
-            } //wenn ein feld leer ist error message
-
-            //einen kunden in die datenbank eintragen
-            $sql = "INSERT INTO kunden (vorname, nachname, email, passwort, ort, plz, strasse, hausnummer) " .
-                    "VALUES ('$vorname', '$vorname', '$email', '$passwort', '$ort', '$plz', '$strasse', '$hausnummer')";
-
-            $result = $connection->query($sql); //query ausführen
-            
-            if(!$result){ //ggf. fehler anzeigen
-                $errorMessage = "Invalid query: " . $connection->error;
-                break;
-            }
-
-            $vorname = "";
-            $nachname = "";
-            $email = "";
-            $passwort = "";
-            $ort = "";
-            $plz = "";
-            $strasse = "";
-            $hausnummer = "";
-
-            $succesMessage = "Kunde wurde hinzugefügt";
-
-            header("location: /tools/admin.php"); //wenn es funktioniert hat den user zur seite zurückschicken
-            exit;
-
-        } while (false);
-    }
-
-?>
