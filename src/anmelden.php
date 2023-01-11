@@ -37,10 +37,10 @@
             <input type="text" name="plz" value="<?php echo $plz; ?>">
             <br>
             <label>Straße</label>
-            <input type="text" name="straße" value="<?php echo $straße; ?>">
+            <input type="text" name="strasse" value="<?php echo $strasse; ?>">
             <br>
             <label>Straßennummer</label>
-            <input type="text" name="straßennummer" value="<?php echo $straßennummer; ?>">
+            <input type="text" name="hausnummer" value="<?php echo $hausnummer; ?>">
             <br>
 
             <?php
@@ -87,8 +87,8 @@
     $passwort = "";
     $ort = "";
     $plz = "";
-    $straße = "";
-    $straßennummer = "";
+    $strasse = "";
+    $hausnummer = "";
 
     $errorMessage = "";
     $succesMessage = "";
@@ -100,18 +100,18 @@
         $passwort = $_POST["passwort"];
         $ort = $_POST["ort"];
         $plz = $_POST["plz"];
-        $straße = $_POST["straße"];
-        $straßennummer = $_POST["straßennummer"];
+        $strasse = $_POST["strasse"];
+        $hausnummer = $_POST["hausnummer"];
 
         do{ 
-            if (empty($vorname) || empty($nachname) || empty($email) || empty($passwort) || empty($ort) || empty($plz) || empty($straße) || empty($straßennummer)){
+            if (empty($vorname) || empty($nachname) || empty($email) || empty($passwort) || empty($ort) || empty($plz) || empty($strasse) || empty($hausnummer)){
                 $errorMessage = "Alle Felde müssen ausgefüllt sein";
                 break;
             } //wenn ein feld leer ist error message
 
             //einen kunden in die datenbank eintragen
-            $sql = "INSERT INTO kunden (vorname, nachname, email, passwort, ort, plz, straße, straßennummer) " .
-                    "VALUES ('$vorname', '$vorname', '$email', '$passwort', '$ort', '$plz', '$straße', '$straßennummer')";
+            $sql = "INSERT INTO kunden (vorname, nachname, email, passwort, ort, plz, strasse, hausnummer) " .
+                    "VALUES ('$vorname', '$vorname', '$email', '$passwort', '$ort', '$plz', '$strasse', '$hausnummer')";
 
             $result = $connection->query($sql); //query ausführen
             
@@ -126,8 +126,8 @@
             $passwort = "";
             $ort = "";
             $plz = "";
-            $straße = "";
-            $straßennummer = "";
+            $strasse = "";
+            $hausnummer = "";
 
             $succesMessage = "Kunde wurde hinzugefügt";
 
