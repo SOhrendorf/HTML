@@ -5,12 +5,12 @@
     <body>
         zurück zur: 
         <a href="../index.html">Startseite</a>
+        <form method="post" action="anmelden.php">
+            <input type="text" size="20" name="user"/>
+            <input type="password" size="20" name="pass"/>
+            <input type="submit" value="Anmelden" name="okbutton"/>
+        </form>      
     </body>
-    <form method="post" action="anmelden.php">
-        <input type="text" size="20" name="user"/>
-        <input type="password" size="20" name="pass"/>
-        <input type="submit" value="Anmelden" name="okbutton"/>
-    </form>
     <?php
         if (isset($_POST['okbutton'])) {
             echo "<h3>";
@@ -20,4 +20,8 @@
             echo "Dein sehr sicheres Passwort ist: ".$_POST['pass'];
         }
     ?>
+    <p>
+    <img src="../bILDER_SRC/bepett.png" width ="50%" height="30%"> <br>
+    
+    <h1>Bei uns sind sie sicher</h1>
 </html>
