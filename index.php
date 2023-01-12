@@ -23,5 +23,57 @@
                 </th>    
             </tr>
         </table>
+            
+        <br>
+        <table width='50%'>
+            <thead>
+                <tr>
+                    <th>Produktname</th>
+                    <th>Preis</th>
+                    <th>Bild</th>
+                </tr>
+            </thead>
+        </table>
+        <tbody>
+        <?php 
+        
+            //gucken ob die datenbank erreichbar ist
+            $servername = "127.0.0.1"; //ipadresse
+            $username = "simon"; //username
+            $password = "himbeerkuchen"; //password
+            $db = "q2_shop"; //datenbankname
+
+            // Create connection
+            $connection = new mysqli($servername, $username, $password, $db);
+
+            // Check connection
+            if ($connection->connect_error){
+                echo "ich bin pos 2";
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            //daten von der datenbank lesen
+            $sql = "SELECT * FROM produkt"; 
+            $result = $connection->query($sql); //suche ausführen und speichern
+
+            //suche überprüfen
+            if (!$result) {
+                die("Invalid query: " . $connection->error);
+            }
+            //daten von der datenbank lesen und ausgeben
+            while($row = $result->fetch_assoc()){
+                echo "
+                <table width='54%'>
+                    <tr>
+                        <td>$row[name]</td>
+                        <td>$row[preis]</td>
+                        <td><img src='$row[bild]' width='50' height='50'/></td>
+                    </tr>
+                </table>
+                ";
+            }
+
+        ?>
+        </tbody>
     </body>
 </html>
