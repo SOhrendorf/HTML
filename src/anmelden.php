@@ -80,28 +80,28 @@
         
         <form method="post"> <!--Eingabefelder -->
             <label>Vorname</label>
-            <input type="text" name="vorname">
+            <input type="text" placeholder="Vorname" name="vorname">
             <br>
             <label>Nachname</label>
-            <input type="text" name="name">
+            <input type="text" placeholder="Nachname" name="name">
             <br>
             <label>E-Mail</label>
-            <input type="text" name="email">
+            <input type="text" placeholder="E-Mail" name="email">
             <br>
             <label>Passwort</label>
-            <input type="text" name="passwort">
+            <input type="password" placeholder="Passwort" name="passwort">
             <br>
             <label>Ort</label>
-            <input type="text" name="ort">
+            <input type="text" placeholder="Ort" name="ort">
             <br>
             <label>PLZ</label>
-            <input type="text" name="plz">
+            <input type="text" placeholder="Postleitzahl" name="plz">
             <br>
             <label>Straße</label>
-            <input type="text" name="strasse">
+            <input type="text" placeholder="Starße" name="strasse">
             <br>
             <label>Straßennummer</label>
-            <input type="text" name="hausnummer">
+            <input type="text" placeholder="Hausnummer" name="hausnummer">
             <br>
 
             <?php

@@ -11,12 +11,19 @@ table{
   }
   
   #tb1 {
-	border: 1px dotted black;
+	border: 1px line black;
 	border-collapse: collapse;
 	background-color:blanchedalmond;
   }
   
   th, td {
 	border: 1px solid black;
-	border-radius: 3px;
+	border-radius: 1px;
+  }
+
+  label{
+
+	padding-left:26px;
+    width:125px;
+	display: inline-block;
   }
