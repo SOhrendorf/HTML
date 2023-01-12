@@ -18,6 +18,20 @@
     $errorMessage = "";
     $succesMessage = "";
 
+    //Abmelden
+    if(isset($_GET['logout']))
+    {
+        if(isset($_SESSION['user_id']))
+        {
+            $_SESSION = array();
+            session_destroy();
+        }
+    
+        header('location: anmelden.php');
+        exit();
+    }
+
+    //Anmelden
    if(isset($_POST['send'])){
     $user_email = trim(htmlspecialchars($_POST['user_email']));
     $user_password = trim(htmlspecialchars($_POST['user_password']));
@@ -28,10 +42,10 @@
         $query->store_result();
         $query->bind_result($user_id);
 
-        if($query->num_rows == 1){
+        if($query->num_rows == 1){//gibt es genau einen Eintarg in der DB mit den Daten
             $query->fetch();
-            $_SESSION['user_id'] = $user_id;
-            header('location: admin.php');
+            $_SESSION['user_id'] = $user_id; //ID in Coockies speichern
+            header('location: user_interface.php'); //weiter in Internen Bereich
             exit();
         }
         else{
@@ -105,6 +119,7 @@
         </form>
 
         <p><a href= "regestrieren.php"> Noch kein Benuter? Hier neu regestrieren</a></p>
+
     </body>
     <p>
     <img src="../bILDER_SRC/bepett.png" width ="30%" height="30%"> <br>

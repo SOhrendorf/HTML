@@ -19,6 +19,8 @@
     </h2>
     <br>
 
+    <p>Willkommen im internen Bereich! Sie k&ouml;nnen sich hier wieder abmelden. <a href="anmelden.php?logout">[Abmelden]</a></p>
+
     <table width='50%'>
         <thead>
             <tr>
@@ -35,6 +37,12 @@
     </table>
     <tbody>
     <?php 
+
+    session_start();
+    if(!isset($_SESSION['user_id']))
+    {
+        die('Sie sind nicht angemeldet! <a href="anmelden.php">[Login]</a>');
+    }
         //gucken ob die datenbank erreichbar ist
         $servername = "127.0.0.1"; //ipadresse
         $username = "simon"; //username
@@ -52,7 +60,7 @@
 
         //daten von der datenbank lesen
         $sql = "SELECT * FROM benutzer"; 
-        $result = $connection->query($sql); //suche ausführen und speichern
+        $result = $connection->query($sql); //suche, ausführen und speichern
 
         //suche überprüfen
         if (!$result) {
@@ -91,11 +99,11 @@
     <tbody>
     <?php 
         
-        //gucken ob die datenbank erreichbar ist
-        $servername = "127.0.0.1"; //ipadresse
-        $username = "simon"; //username
-        $password = "himbeerkuchen"; //password
-        $db = "q2_shop"; //datenbankname
+        //prüfen ob die datenbank erreichbar ist
+        $servername = "127.0.0.1"; 
+        $username = "simon";
+        $password = "himbeerkuchen";
+        $db = "q2_shop";
 
         // Create connection
         $connection = new mysqli($servername, $username, $password, $db);
@@ -108,7 +116,7 @@
 
         //daten von der datenbank lesen
         $sql = "SELECT * FROM produkt"; 
-        $result = $connection->query($sql); //suche ausführen und speichern
+        $result = $connection->query($sql); //suche, ausführen und speichern
 
         //suche überprüfen
         if (!$result) {
