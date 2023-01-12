@@ -85,6 +85,7 @@
                 <th>ID</th>
                 <th>Produktname</th>
                 <th>Preis</th>
+                <th>Bild</th>
             </tr>
         </thead>
     </table>
@@ -122,6 +123,7 @@
                     <td>$row[ID]</td>
                     <td>$row[name]</td>
                     <td>$row[preis]</td>
+                    <td>$row[bild]</td>
                 </tr>
             </table>
             ";

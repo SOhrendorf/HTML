@@ -18,73 +18,7 @@
     </table>
     </h2>
     <br>
-
     <p>Willkommen im internen Bereich! Sie k&ouml;nnen sich hier wieder abmelden. <a href="anmelden.php?logout">[Abmelden]</a></p>
-
-    <table width='50%'>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Vorname</th>
-                <th>Nachname</th>
-                <th>E-mail</th>
-                <th>Ort</th>
-                <th>PLZ</th>
-                <th>Straße</th>
-                <th>Straßennummer</th>
-            </tr>
-        </thead>
-    </table>
-    <tbody>
-    <?php 
-
-    session_start();
-    if(!isset($_SESSION['user_id']))
-    {
-        die('Sie sind nicht angemeldet! <a href="anmelden.php">[Login]</a>');
-    }
-        //gucken ob die datenbank erreichbar ist
-        $servername = "127.0.0.1"; //ipadresse
-        $username = "simon"; //username
-        $password = "himbeerkuchen"; //password
-        $db = "q2_shop"; //datenbankname
-
-        // Create connection
-        $connection = new mysqli($servername, $username, $password, $db);
-
-        // Check connection
-        if ($connection->connect_error){
-            echo "ich bin pos 1";
-            die("Connection failed: " . $conn->connect_error);     
-        }
-
-        //daten von der datenbank lesen
-        $sql = "SELECT * FROM benutzer"; 
-        $result = $connection->query($sql); //suche, ausführen und speichern
-
-        //suche überprüfen
-        if (!$result) {
-            die("Invalid query: " . $connection->error);
-        }
-        //daten von der datenbank lesen und ausgeben
-        while($row = $result->fetch_assoc()){
-            echo "
-            <table width='54%'>
-                <tr>
-                    <td>$row[ID]</td>
-                    <td>$row[vorname]</td>
-                    <td>$row[name]</td>
-                    <td>$row[email]</td>
-                    <td>$row[ort]</td>
-                    <td>$row[plz]</td>
-                    <td>$row[strasse]</td>
-                    <td>$row[hausnummer]</td>
-                </tr>
-            </table>
-            ";
-        }
-
-    ?>
     </tbody>
     <br>
     <table width='50%'>
@@ -93,12 +27,19 @@
                 <th>ID</th>
                 <th>Produktname</th>
                 <th>Preis</th>
+                <th>Bild</th>
             </tr>
         </thead>
     </table>
     <tbody>
     <?php 
-        
+        session_start();
+        $user_id = $_SESSION['user_id'];
+        if(!isset($user_id))
+        {
+         die('Sie sind nicht angemeldet! <a href="anmelden.php">[Login]</a>');
+        }
+
         //prüfen ob die datenbank erreichbar ist
         $servername = "127.0.0.1"; 
         $username = "simon";
@@ -110,18 +51,18 @@
 
         // Check connection
         if ($connection->connect_error){
-            echo "ich bin pos 2";
             die("Connection failed: " . $conn->connect_error);
         }
 
         //daten von der datenbank lesen
-        $sql = "SELECT * FROM produkt"; 
-        $result = $connection->query($sql); //suche, ausführen und speichern
+        $sql = "SELECT * FROM produkt WHERE fk_verkaeuferID = $user_id"; 
+        $result = $connection->query($sql); //suche ausführen und speichern
 
         //suche überprüfen
         if (!$result) {
             die("Invalid query: " . $connection->error);
         }
+
         //daten von der datenbank lesen und ausgeben
         while($row = $result->fetch_assoc()){
             echo "
@@ -130,6 +71,7 @@
                     <td>$row[ID]</td>
                     <td>$row[name]</td>
                     <td>$row[preis]</td>
+                    <td><img src='../$row[bild]' width='50' height='50'/></td>
                 </tr>
             </table>
             ";
@@ -140,4 +82,3 @@
 
 </body>
 </html>
-
