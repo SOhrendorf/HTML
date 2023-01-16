@@ -3,9 +3,9 @@
         $user_id = $_SESSION['user_id'];
         //Stammvariabeln für DB
         $servername = "127.0.0.1";
-        $username = "q2";
-        $password = "geheim";
-        $db = "q2_andrewtateshop";
+        $username = "simon";
+        $password = "himbeerkuchen";
+        $db = "q2_shop";
 
         //Verbindung aufbauen
         $connection = new mysqli($servername, $username, $password, $db);
@@ -42,7 +42,7 @@
 
             $succesMessage = "Produkt wurde hinzugefügt";
 
-            header("location: /simon/src/user_interface.php"); //wenn es funktioniert hat den user zur seite zurückschicken
+            header("location: /info/src/user_interface.php"); //wenn es funktioniert hat den user zur seite zurückschicken
             exit;
 
         } while (false);
@@ -72,7 +72,7 @@
                         <a href="impressum.html">Impressum</a>
                 </th>
                 <th id="tb1">
-                    <a href="anmelden.php">Anmelden</a>
+                    <a href="user_interface.php">Übersicht</a>
                 </th>    
             </tr>
         </table>

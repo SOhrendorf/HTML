@@ -13,12 +13,12 @@
        <tr id="tb1">
           <th id="tb1"><a href="../index.php">Homepage</a></th>
           <th id="tb1"><a href="impressum.html">Impressum</a></th>
-          <th id="tb1"><a href="anmelden.php">Anmelden</a></th>
+          <th id="tb1"><a href="anmelden.php?logout">Abmelden</a></th>
         </tr>
     </table>
     </h2>
     <br>
-    <p>Willkommen im internen Bereich! Sie k&ouml;nnen sich hier wieder abmelden. <a href="anmelden.php?logout">[Abmelden]</a></p>
+    <p>Willkommen im internen Bereich!</p>
     <p>Möchten sie Ihrem Sortiment ein neues Produkkt hinzufügen? <a href="addprodukt.php">[Klick hier]</a></p>
     </tbody>
     <br>
@@ -29,6 +29,7 @@
                 <th>Produktname</th>
                 <th>Preis</th>
                 <th>Bild</th>
+                <th>Aktion</th>
             </tr>
         </thead>
     </table>
@@ -43,9 +44,9 @@
 
         //prüfen ob die datenbank erreichbar ist
         $servername = "127.0.0.1"; 
-        $username = "q2";
-        $password = "geheim";
-        $db = "q2_andrewtateshop";
+        $username = "simon";
+        $password = "himbeerkuchen";
+        $db = "q2_shop";
 
         // Create connection
         $connection = new mysqli($servername, $username, $password, $db);
@@ -78,7 +79,26 @@
             ";
         }
 
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){ //checken ob daten übertragen wurden
+            $pID = $_POST["pID"];//wenn es klappt daten übertragen
+
+            $sql = "DELETE FROM `produkt` WHERE `id` = $pID";
+            $result = $connection->query($sql); //query ausführen
+            
+            header("location: /info/src/user_interface.php"); //wenn es funktioniert hat den user zur seite zurückschicken
+        }  
+
     ?>
     </tbody>
+    </br>
+    <h2>
+		Produkt löschen
+	</h2>
+    <form action="user_interface.php" method="post">
+        <label>Produkt ID</label>
+        <input type="text" placeholder="ID" name="pID">
+        <br>
+        <input type="submit" name="löschen" value="loeschen"></button><br>
+    </form>
 </body>
 </html>

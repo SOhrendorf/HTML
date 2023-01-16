@@ -1,9 +1,9 @@
 <?php
         //Stammvariabeln für DB
         $servername = "127.0.0.1";
-        $username = "q2";
-        $password = "geheim";
-        $db = "q2_andrewtateshop";
+        $username = "simon";
+        $password = "himbeerkuchen";
+        $db = "q2_shop";
 
         //Verbindung aufbauen
         $connection = new mysqli($servername, $username, $password, $db);
@@ -45,7 +45,7 @@
 
             $succesMessage = "Kunde wurde hinzugefügt";
 
-            header("location: /simon/src/anmelden.php"); //wenn es funktioniert hat den user zur seite zurückschicken
+            header("location: /info/src/anmelden.php"); //wenn es funktioniert hat den user zur seite zurückschicken
             exit;
 
         } while (false);
