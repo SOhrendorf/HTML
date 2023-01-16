@@ -19,6 +19,7 @@
     </h2>
     <br>
     <p>Willkommen im internen Bereich! Sie k&ouml;nnen sich hier wieder abmelden. <a href="anmelden.php?logout">[Abmelden]</a></p>
+    <p>Möchten sie Ihrem Sortiment ein neues Produkkt hinzufügen? <a href="addprodukt.php">[Klick hier]</a></p>
     </tbody>
     <br>
     <table width='50%'>
@@ -42,9 +43,9 @@
 
         //prüfen ob die datenbank erreichbar ist
         $servername = "127.0.0.1"; 
-        $username = "simon";
-        $password = "himbeerkuchen";
-        $db = "q2_shop";
+        $username = "q2";
+        $password = "geheim";
+        $db = "q2_andrewtateshop";
 
         // Create connection
         $connection = new mysqli($servername, $username, $password, $db);

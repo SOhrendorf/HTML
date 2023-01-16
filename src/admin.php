@@ -37,9 +37,9 @@
     <?php 
         //gucken ob die datenbank erreichbar ist
         $servername = "127.0.0.1"; //ipadresse
-        $username = "simon"; //username
-        $password = "himbeerkuchen"; //password
-        $db = "q2_shop"; //datenbankname
+        $username = "q2"; //username
+        $password = "geheim"; //password
+        $db = "q2_andrewtateshop"; //datenbankname
 
         // Create connection
         $connection = new mysqli($servername, $username, $password, $db);
@@ -94,9 +94,9 @@
         
         //gucken ob die datenbank erreichbar ist
         $servername = "127.0.0.1"; //ipadresse
-        $username = "simon"; //username
-        $password = "himbeerkuchen"; //password
-        $db = "q2_shop"; //datenbankname
+        $username = "q2"; //username
+        $password = "geheim"; //password
+        $db = "q2_andrewtateshop"; //datenbankname
 
         // Create connection
         $connection = new mysqli($servername, $username, $password, $db);

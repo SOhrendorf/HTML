@@ -1,4 +1,6 @@
 <?php
+        session_start();
+        $user_id = $_SESSION['user_id'];
         //Stammvariabeln für DB
         $servername = "127.0.0.1";
         $username = "q2";
@@ -17,24 +19,19 @@
     $succesMessage = "";
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){ //checken ob daten übertragen wurden
-        $vorname = $_POST["vorname"]; //wenn es klappt daten übertragen 
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $passwort = $_POST["passwort"];
-        $ort = $_POST["ort"];
-        $plz = $_POST["plz"];
-        $strasse = $_POST["strasse"];
-        $hausnummer = $_POST["hausnummer"];
+        $name = $_POST["name"]; //wenn es klappt daten übertragen 
+        $preis = $_POST["preis"];
+        $bild = $_POST["bild"];
 
         do{ 
-            if (empty($vorname) || empty($name) || empty($email) || empty($passwort) || empty($ort) || empty($plz) || empty($strasse) || empty($hausnummer)){
+            if (empty($name) || empty($preis) || empty($bild)){
                 $errorMessage = "Alle Felde müssen ausgefüllt sein";
                 break;
             } //wenn ein feld leer ist error message
 
             //einen kunden in die datenbank eintragen
-            $sql = "INSERT INTO benutzer (vorname, name, email, passwort, ort, plz, strasse, hausnummer) " .
-                    "VALUES ('$vorname', '$name', '$email', '$passwort', '$ort', '$plz', '$strasse', '$hausnummer')";
+            $sql = "INSERT INTO produkt (name, preis, bild, fk_verkaeuferID) " .
+                    "VALUES ('$name', '$preis', '$bild', '$user_id')";
 
             $result = $connection->query($sql); //query ausführen
             
@@ -43,9 +40,9 @@
                 break;
             }
 
-            $succesMessage = "Kunde wurde hinzugefügt";
+            $succesMessage = "Produkt wurde hinzugefügt";
 
-            header("location: /simon/src/anmelden.php"); //wenn es funktioniert hat den user zur seite zurückschicken
+            header("location: /simon/src/user_interface.php"); //wenn es funktioniert hat den user zur seite zurückschicken
             exit;
 
         } while (false);
@@ -64,7 +61,7 @@
     
     <body>
         <h1>
-			Neunen Benutzer anlegen
+			Neues Produkt hinzufügen
 		</h1>
         <table>
             <tr>
@@ -81,7 +78,7 @@
         </table>
         </P>
 
-        <h2>Kunden registrieren</h2>
+        <h2>Produkt hinzufügen</h2>
 
         <?php
             if(!empty($errorMessage)){ //fehlermeldung wenn es schiefgeht
@@ -93,29 +90,14 @@
         ?> 
         
         <form method="post"> <!--Eingabefelder -->
-            <label>Vorname</label>
-            <input type="text" placeholder="Vorname" name="vorname">
+            <label>Name</label>
+            <input type="text" placeholder="Name" name="name">
             <br>
-            <label>Nachname</label>
-            <input type="text" placeholder="Nachname" name="name">
+            <label>Preis</label>
+            <input type="text" placeholder="Preis" name="preis">
             <br>
-            <label>E-Mail</label>
-            <input type="text" placeholder="E-Mail" name="email">
-            <br>
-            <label>Passwort</label>
-            <input type="password" placeholder="Passwort" name="passwort">
-            <br>
-            <label>Ort</label>
-            <input type="text" placeholder="Ort" name="ort">
-            <br>
-            <label>PLZ</label>
-            <input type="text" placeholder="Postleitzahl" name="plz">
-            <br>
-            <label>Straße</label>
-            <input type="text" placeholder="Starße" name="strasse">
-            <br>
-            <label>Straßennummer</label>
-            <input type="text" placeholder="Hausnummer" name="hausnummer">
+            <label>Bild</label>
+            <input type="text" placeholder="Bild" name="bild">
             <br>
 
             <?php
@@ -127,11 +109,9 @@
                 }
             ?>
 
-            <button type="submit">Registrieren</button>
+            <button type="submit">Hinzufügen</button>
         </form>
     </body>
     <p>
     <img src="../bILDER_SRC/bepett.png" width ="30%" height="30%"> <br>
-    
-    <h1>Bei uns sind sie sicher</h1>
 </html>
