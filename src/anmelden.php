@@ -3,9 +3,9 @@
     define('SECURE', true);
         //Stammvariabeln für DB
         $servername = "127.0.0.1";
-        $username = "simon";
-        $password = "himbeerkuchen";
-        $db = "q2_shop";
+        $username = "q2";
+        $password = "geheim";
+        $db = "q2_andrewtateshop";
 
         //Verbindung aufbauen
         $connection = new mysqli($servername, $username, $password, $db);

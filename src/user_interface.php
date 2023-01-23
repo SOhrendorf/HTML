@@ -29,7 +29,6 @@
                 <th>Produktname</th>
                 <th>Preis</th>
                 <th>Bild</th>
-                <th>Aktion</th>
             </tr>
         </thead>
     </table>
@@ -44,9 +43,9 @@
 
         //prüfen ob die datenbank erreichbar ist
         $servername = "127.0.0.1"; 
-        $username = "simon";
-        $password = "himbeerkuchen";
-        $db = "q2_shop";
+        $username = "q2";
+        $password = "geheim";
+        $db = "q2_andrewtateshop";
 
         // Create connection
         $connection = new mysqli($servername, $username, $password, $db);
@@ -72,7 +71,7 @@
                 <tr>
                     <td>$row[ID]</td>
                     <td>$row[name]</td>
-                    <td>$row[preis]</td>
+                    <td>$row[preis] $row[waehrung]</td>
                     <td><img src='../$row[bild]' width='50' height='50'/></td>
                 </tr>
             </table>
@@ -85,7 +84,7 @@
             $sql = "DELETE FROM `produkt` WHERE `id` = $pID";
             $result = $connection->query($sql); //query ausführen
             
-            header("location: /info/src/user_interface.php"); //wenn es funktioniert hat den user zur seite zurückschicken
+            header("location: /simon/src/user_interface.php"); //wenn es funktioniert hat den user zur seite zurückschicken
         }  
 
     ?>

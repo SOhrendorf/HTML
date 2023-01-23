@@ -3,9 +3,9 @@
         $user_id = $_SESSION['user_id'];
         //Stammvariabeln für DB
         $servername = "127.0.0.1";
-        $username = "simon";
-        $password = "himbeerkuchen";
-        $db = "q2_shop";
+        $username = "q2";
+        $password = "geheim";
+        $db = "q2_andrewtateshop";
 
         //Verbindung aufbauen
         $connection = new mysqli($servername, $username, $password, $db);
@@ -21,17 +21,18 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){ //checken ob daten übertragen wurden
         $name = $_POST["name"]; //wenn es klappt daten übertragen 
         $preis = $_POST["preis"];
+	$waehrung = $_POST["waehrung"];
         $bild = $_POST["bild"];
 
         do{ 
-            if (empty($name) || empty($preis) || empty($bild)){
+            if (empty($name) || empty($preis) || empty($waehrung) || empty($bild)){
                 $errorMessage = "Alle Felde müssen ausgefüllt sein";
                 break;
             } //wenn ein feld leer ist error message
 
             //einen kunden in die datenbank eintragen
-            $sql = "INSERT INTO produkt (name, preis, bild, fk_verkaeuferID) " .
-                    "VALUES ('$name', '$preis', '$bild', '$user_id')";
+            $sql = "INSERT INTO produkt (name, preis, waehrung, bild, fk_verkaeuferID) " .
+                    "VALUES ('$name', '$preis', '$waehrung', '$bild', '$user_id')";
 
             $result = $connection->query($sql); //query ausführen
             
@@ -42,7 +43,7 @@
 
             $succesMessage = "Produkt wurde hinzugefügt";
 
-            header("location: /info/src/user_interface.php"); //wenn es funktioniert hat den user zur seite zurückschicken
+            header("location: /simon/src/user_interface.php"); //wenn es funktioniert hat den user zur seite zurückschicken
             exit;
 
         } while (false);
@@ -55,7 +56,7 @@
     <head>
         <link rel="stylesheet" href="../stylesheet.css">
         <title>
-          Anmelden
+          Produkt erg�nzen
         </title>
     </head>
     
@@ -96,6 +97,9 @@
             <label>Preis</label>
             <input type="text" placeholder="Preis" name="preis">
             <br>
+	    <label>W&auml;hrung</label>
+	    <input type="text" placeholder="W&auml;hrung" name="waehrung">
+	    <br>
             <label>Bild</label>
             <input type="text" placeholder="Bild" name="bild">
             <br>
