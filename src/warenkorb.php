@@ -19,7 +19,7 @@
                         <a href="src/impressum.html">Impressum</a>
                 </th>
                 <th id="tb1">
-                    <a href="src/anmelden.php">Anmelden</a>
+                    <a href="warenkorb.php?id=-1">Warekorb leeren</a>
                 </th>    
             </tr>
         </table>

@@ -19,6 +19,9 @@
                         <a href="src/impressum.html">Impressum</a>
                 </th>
                 <th id="tb1">
+                    <a href="src/warenkorb.php">Warenkorb</a>
+                </th>  
+                <th id="tb1">
                     <a href="src/anmelden.php">Anmelden</a>
                 </th>    
             </tr>
