@@ -20,10 +20,16 @@
                 </th>
                 <th id="tb1">
                     <a href="src/warenkorb.php">Warenkorb</a>
-                </th>  
-                <th id="tb1">
-                    <a href="src/anmelden.php">Anmelden</a>
-                </th>    
+                </th>
+                <?php
+                    session_start();
+                    $user_id = $_SESSION['user_id'];
+                    if(!isset($user_id)){
+                        echo "<th id='tb1'><a href='src/anmelden.php'>Anmelden</a></th>";
+                    }else{
+                        echo "<th id='tb1'><a href='src/user_interface.php'>User Interface</a></th>";
+                    };
+                ?>    
             </tr>
         </table>
             
