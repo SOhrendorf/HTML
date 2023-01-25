@@ -114,7 +114,7 @@
                  ";
                 }
             ?>
-            
+
             <input type="submit" name="send" value="Anmelden"></button><br>
         </form>
 

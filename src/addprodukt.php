@@ -21,8 +21,11 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){ //checken ob daten übertragen wurden
         $name = $_POST["name"]; //wenn es klappt daten übertragen 
         $preis = $_POST["preis"];
-	$waehrung = $_POST["waehrung"];
-        $bild = $_POST["bild"];
+	    $waehrung = $_POST["waehrung"];
+        $bild = $_FILES['bild']['name'];
+	    $source = '/var/www/html/info/bILDER_SRC/';	
+
+	    move_uploaded_file($_FILES['bild']['tmp_name'],$source.$bild);
 
         do{ 
             if (empty($name) || empty($preis) || empty($waehrung) || empty($bild)){
@@ -32,7 +35,7 @@
 
             //einen kunden in die datenbank eintragen
             $sql = "INSERT INTO produkt (name, preis, waehrung, bild, fk_verkaeuferID) " .
-                    "VALUES ('$name', '$preis', '$waehrung', '$bild', '$user_id')";
+                    "VALUES ('$name', '$preis', '$waehrung', 'bILDER_SRC/$bild', '$user_id')";
 
             $result = $connection->query($sql); //query ausführen
             
@@ -56,7 +59,7 @@
     <head>
         <link rel="stylesheet" href="../stylesheet.css">
         <title>
-          Produkt erg�nzen
+          Produkt erg�nzen
         </title>
     </head>
     
@@ -90,18 +93,18 @@
             }
         ?> 
         
-        <form method="post"> <!--Eingabefelder -->
+        <form method="post" enctype="multipart/form-data"> <!--Eingabefelder -->
             <label>Name</label>
             <input type="text" placeholder="Name" name="name">
             <br>
             <label>Preis</label>
             <input type="text" placeholder="Preis" name="preis">
             <br>
-	    <label>W&auml;hrung</label>
-	    <input type="text" placeholder="W&auml;hrung" name="waehrung">
-	    <br>
+	        <label>W&auml;hrung</label>
+	        <input type="text" placeholder="W&auml;hrung" name="waehrung">
+	        <br>
             <label>Bild</label>
-            <input type="text" placeholder="Bild" name="bild">
+            <input type="file" placeholder="Bild" name="bild">
             <br>
 
             <?php

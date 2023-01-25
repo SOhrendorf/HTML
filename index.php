@@ -32,7 +32,6 @@
                 ?>    
             </tr>
         </table>
-            
         <br>
         <table width='50%'>
             <thead>
@@ -76,8 +75,8 @@
                     <tr>
                         <td>$row[name]</td>
                         <td>$row[preis] $row[waehrung]</td>
-                        <td><img src='$row[bild]' width='50' height='50'/></td>
-                        <td> <a href='src/warenkorb.php?id=$row[ID]'> Kaufen</a></td>
+                        <td><img src='$row[bild]' width='75' height='75'/></td>
+                        <td> <a href='src/warenkorb.php?id=$row[ID]'> in den Warenkorb</a></td>
                     </tr>
                 </table>
                 ";

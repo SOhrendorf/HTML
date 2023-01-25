@@ -16,14 +16,14 @@
                         <a href="../index.php">Startseite</a>
                 </th>
                 <th id="tb1">
-                        <a href="src/impressum.html">Impressum</a>
+                        <a href="impressum.html">Impressum</a>
                 </th>
                 <th id="tb1">
                     <a href="warenkorb.php?id=-1">Warekorb leeren</a>
                 </th>    
             </tr>
         </table>
-
+        <h2>Ihr Warenkorb:</h2>
         <?php
             $pID = $_GET['id'];
 
@@ -47,9 +47,19 @@
                     header("location: /simon/src/warenkorb.php");
                 }else{
                 $cart->insertArtikel($pID);
+                header("location: /simon/src/warenkorb.php");
                 }
             }
             $cart->getcart();
+
         ?>
+        <button type="button" onclick="seepferd()">Kaufen</button>
     </body>
 </html>
+<script>
+    function seepferd(){
+        window.location = "warenkorb.php?id=-1";
+        window.location = "gekauft.php";
+        
+    }
+</script>
