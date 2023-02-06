@@ -33,8 +33,9 @@
             } //wenn ein feld leer ist error message
 
             //einen kunden in die datenbank eintragen
+            $pwd = password_hash($passwort, PASSWORD_BCRYPT, array("cost" => 11));
             $sql = "INSERT INTO benutzer (vorname, name, email, passwort, ort, plz, strasse, hausnummer) " .
-                    "VALUES ('$vorname', '$name', '$email', '$passwort', '$ort', '$plz', '$strasse', '$hausnummer')";
+                    "VALUES ('$vorname', '$name', '$email', '$pwd', '$ort', '$plz', '$strasse', '$hausnummer')";
 
             $result = $connection->query($sql); //query ausführen
             
@@ -131,7 +132,7 @@
         </form>
     </body>
     <p>
-    <img src="../bILDER_SRC/bepett.png" width ="6+0%" height="30%"> <br>
+    <img src="../bILDER_SRC/bepett.png" width ="60%" height="30%"> <br>
     
     <h1>Bei uns sind sie sicher</h1>
 </html>

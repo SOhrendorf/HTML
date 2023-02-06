@@ -25,11 +25,16 @@
         </table>
         <h2>Ihr Warenkorb:</h2>
         <?php
+
+            session_start();
+            $SD = $_SESSION['SD'];
             $pID = $_GET['id'];
+            
+            $SDr = random_int(1,10);
+            $SD += $SDr;
+            $_SESSION['SD'] = $SD;
 
             //Klasse Warenkorb laden
-            // Die Session Starten
-            session_start();
 
             // Die Klasse Includieren
             include_once 'warenkorb_new.php';
@@ -44,19 +49,27 @@
             if($pID != NULL){
                 if($pID == -1){
                     $cart->undo_cart();
+                    $_SESSION['SD'] = 0;
                     header("location: /simon/src/warenkorb.php");
                 }else{
-                $cart->insertArtikel($pID);
-                header("location: /simon/src/warenkorb.php");
+                    echo"ich bin hier";
+                    $cart->insertArtikel($pID);
+                    header("location: /simon/src/warenkorb.php");
                 }
             }
             $cart->getcart();
-
+            if($cart->get_cart_count() != 0){
+            echo "Sie kaufen für $SD SD ein";
+            }
         ?>
+        <br>
         <button type="button" onclick="seepferd()">Kaufen</button>
+
+
     </body>
 </html>
 <script>
+
     function seepferd(){
         window.location = "warenkorb.php?id=-1";
         window.location = "gekauft.php";

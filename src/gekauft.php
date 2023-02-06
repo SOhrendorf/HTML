@@ -26,6 +26,8 @@
 
         <h1> Vielen Dank für Ihren Einkauf <br>
             Hier kommen Sie wieder zu unserer Startseite <br>
+
+            
             <a href = "../index.php">Startseite</a>
         </h1>
         

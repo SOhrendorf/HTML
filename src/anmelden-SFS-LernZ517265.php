@@ -34,28 +34,23 @@
     //Anmelden
    if(isset($_POST['send'])){
     $user_email = trim(htmlspecialchars($_POST['user_email']));
-    $user_password = password_hash($_POST['user_password'], PASSWORD_BCRYPT, array("cost" => 11));
-    echo "Eingabe: $user_password";
-    //$user_password = trim(htmlspecialchars($_POST['user_password']));
+    $user_password = trim(htmlspecialchars($_POST['user_password']));
 
-    $query = $connection->query("SELECT `passwort` FROM `benutzer` WHERE `email` = '".$_POST['user_email']."'");
-    $dbpass = $query->fetch_assoc();
-//        $query->store_result();
-//        $query->bind_result($dbhash);
-//        echo $query;
-    echo "<br>";
-        echo password_verify($_POST['user_password'], $dbpass['passwort']);
-        echo "dein db: ".$dbpass['passwort'];
+    $query = $connection->prepare('SELECT `ID` FROM `benutzer` WHERE `email` = ? AND `passwort` = ?');
+        $query->bind_param('ss', $_POST['user_email'], ($_POST['user_password']));
+        $query->execute();
+        $query->store_result();
+        $query->bind_result($user_id);
 
-        //if($query->num_rows == 1){//gibt es genau einen Eintarg in der DB mit den Daten
-        //    $query->fetch();
-        //    $_SESSION['user_id'] = $user_id; //ID in Coockies speichern
-        //    header('location: user_interface.php'); //weiter in Internen Bereich
-        //    exit();
-        //}
-        //else{
-        //    $error = 'Ihre Anmeldedaten sind nicht korrekt. Bitte wiederholen Sie Ihre Eingabe.';
-        //}
+        if($query->num_rows == 1){//gibt es genau einen Eintarg in der DB mit den Daten
+            $query->fetch();
+            $_SESSION['user_id'] = $user_id; //ID in Coockies speichern
+            header('location: user_interface.php'); //weiter in Internen Bereich
+            exit();
+        }
+        else{
+            $error = 'Ihre Anmeldedaten sind nicht korrekt. Bitte wiederholen Sie Ihre Eingabe.';
+        }
    }else{
        $error = NULL;
        $user_email = NULL;
@@ -119,16 +114,16 @@
                  ";
                 }
             ?>
-
+        
             <input type="submit" name="send" value="Anmelden"></button><br>
         </form>
 
-        <p><a href= "regestrieren.php"> Noch kein Benuter? Hier neu regestrieren</a></p>
+        <p><a href= "regestrieren.php"> Noch kein Benutzer? Hier neu regestrieren</a></p>
 
     </body>
     <p>
     <img src="../bILDER_SRC/bepett.png" width ="30%" height="30%"> <br>
-    
+
     <h1>Bei uns sind sie sicher</h1>
 </html>
 
