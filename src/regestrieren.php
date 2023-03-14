@@ -28,11 +28,34 @@
 
         do{ 
             if (empty($vorname) || empty($name) || empty($email) || empty($passwort) || empty($ort) || empty($plz) || empty($strasse) || empty($hausnummer)){
+                // password validation
+
                 $errorMessage = "Alle Felde müssen ausgefüllt sein";
                 break;
             } //wenn ein feld leer ist error message
+            if (empty($passwort)){
+                $error = true;
+                $errorMessage = "Bitte Passwort eingeben.";
+
+                break;
+             } else if (preg_match("/[a-z]/", $passwort)
+                   && preg_match("/[A-Z]/", $passwort)
+                   && preg_match("/[0-9]/", $passwort)) {
+                $error = true;
+                $errorMessage = "Das Passwort muss Kleinbuchstaben, Großbuchstaben und Zahlen enthalten.";
+                break;
+            } else if (strlen($passwort) < 8) {
+                $error = true;
+                $errorMessage = "Das Passwort muss mindestens 8 Zeichen lang sein.";
+                break;
+            } 
+            
 
             //einen kunden in die datenbank eintragen
+            //Pfefer
+            $peper = "gretz4350th78T/e05";
+            $passwort = $passwort.$peper;
+            //hash + Sals
             $pwd = password_hash($passwort, PASSWORD_BCRYPT, array("cost" => 11));
             $sql = "INSERT INTO benutzer (vorname, name, email, passwort, ort, plz, strasse, hausnummer) " .
                     "VALUES ('$vorname', '$name', '$email', '$pwd', '$ort', '$plz', '$strasse', '$hausnummer')";
@@ -64,6 +87,7 @@
     </head>
     
     <body>
+        <img src="../bILDER_SRC/walkurelogo.png" onclick="window.location ='../index.php'" alt="logo">
         <h1>
 			Neunen Benutzer anlegen
 		</h1>

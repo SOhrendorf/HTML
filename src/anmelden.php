@@ -34,28 +34,20 @@
     //Anmelden
    if(isset($_POST['send'])){
     $user_email = trim(htmlspecialchars($_POST['user_email']));
-    $user_password = password_hash($_POST['user_password'], PASSWORD_BCRYPT, array("cost" => 11));
-    echo "Eingabe: $user_password";
-    //$user_password = trim(htmlspecialchars($_POST['user_password']));
+    $peper = "gretz4350th78T/e05";
+    $user_password = $_POST['user_password'].$peper;
 
-    $query = $connection->query("SELECT `passwort` FROM `benutzer` WHERE `email` = '".$_POST['user_email']."'");
+    $query = $connection->query("SELECT `passwort`,`ID` FROM `benutzer` WHERE `email` = '".$_POST['user_email']."'");
     $dbpass = $query->fetch_assoc();
-//        $query->store_result();
-//        $query->bind_result($dbhash);
-//        echo $query;
-    echo "<br>";
-        echo password_verify($_POST['user_password'], $dbpass['passwort']);
-        echo "dein db: ".$dbpass['passwort'];
-
-        //if($query->num_rows == 1){//gibt es genau einen Eintarg in der DB mit den Daten
-        //    $query->fetch();
-        //    $_SESSION['user_id'] = $user_id; //ID in Coockies speichern
-        //    header('location: user_interface.php'); //weiter in Internen Bereich
-        //    exit();
-        //}
-        //else{
-        //    $error = 'Ihre Anmeldedaten sind nicht korrekt. Bitte wiederholen Sie Ihre Eingabe.';
-        //}
+ 
+        if(password_verify($user_password, $dbpass['passwort'])){//gibt es genau einen Eintarg in der DB mit den Daten
+            $_SESSION['user_id'] =  $dbpass['ID']; //ID in Coockies speichern
+            header('location: user_interface.php'); //weiter in Internen Bereich
+            exit();
+        }
+        else{
+            $error = 'Ihre Anmeldedaten sind nicht korrekt. Bitte wiederholen Sie Ihre Eingabe.';
+        }
    }else{
        $error = NULL;
        $user_email = NULL;
@@ -73,6 +65,7 @@
     </head>
     
     <body>
+        <img src="../bILDER_SRC/walkurelogo.png" onclick="window.location ='../index.php'" alt="logo">
         <h1>
 			Anmeldung
 		</h1>

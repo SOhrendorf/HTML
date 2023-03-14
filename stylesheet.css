@@ -15,6 +15,12 @@ table{
 	border-collapse: collapse;
 	background-color:blanchedalmond;
   }
+
+  #Bild:hover{
+	width: 190px;
+    height: 200px;   
+    transition: 2s ease-in-out;
+  }
   
   th, td {
 	border: 1px solid black;

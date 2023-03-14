@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <img src="../bILDER_SRC/walkurelogo.png" alt="logo">
+        <img src="../bILDER_SRC/walkurelogo.png" onclick="window.location ='../index.php'" alt="logo">
         <table>
             <tr>
                 <th id="tb1">
@@ -52,7 +52,6 @@
                     $_SESSION['SD'] = 0;
                     header("location: /simon/src/warenkorb.php");
                 }else{
-                    echo"ich bin hier";
                     $cart->insertArtikel($pID);
                     header("location: /simon/src/warenkorb.php");
                 }

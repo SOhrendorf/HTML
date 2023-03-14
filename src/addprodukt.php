@@ -29,8 +29,8 @@
         //wenn nichts passiert fehlen dem Benutzer "www-data" in '/var/tmp' & '/var/www/html/simon/bILDER_SRC/' berechtigungen 
 
         do{ 
-            if (empty($name) || empty($preis) || empty($waehrung) || empty($bild) || $bild == 'Bild.png' || $name == 'Produkt'){
-                $errorMessage = "Alle Felder müssen ausgefüllt sein";
+            if (empty($name) || empty($preis) || empty($waehrung) || empty($bild)){
+                $errorMessage = "Alle Felde müssen ausgefüllt sein";
                 break;
             } //wenn ein feld leer ist error message
 
@@ -65,6 +65,7 @@
     </head>
     
     <body>
+        <img src="../bILDER_SRC/walkurelogo.png" onclick="window.location ='../index.php'" alt="logo">
         <h1>
 			Neues Produkt hinzufügen
 		</h1>

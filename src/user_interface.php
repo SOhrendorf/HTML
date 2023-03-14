@@ -7,7 +7,7 @@
     <title>Online-Shop</title>
 </head>
 <body>
-    <img src="../bILDER_SRC/walkurelogo.png" alt="logo" >
+    <img src="../bILDER_SRC/walkurelogo.png" onclick="window.location ='../index.php'" alt="logo">
     <h2>
       <table id="tb1">
        <tr id="tb1">

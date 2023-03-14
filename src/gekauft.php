@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <img src="../bILDER_SRC/walkurelogo.png" alt="logo">
+        <img src="../bILDER_SRC/walkurelogo.png" onclick="window.location ='../index.php'" alt="logo">
         <table>
             <tr>
                 <th id="tb1">
@@ -26,10 +26,10 @@
 
         <h1> Vielen Dank für Ihren Einkauf <br>
             Hier kommen Sie wieder zu unserer Startseite <br>
-
-            
             <a href = "../index.php">Startseite</a>
         </h1>
+        
+
         
     </body>
 </html>
